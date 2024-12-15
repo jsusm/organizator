@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --font-sans: 'Inter Variable';
+
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
 

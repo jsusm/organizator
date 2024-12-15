@@ -1,6 +1,8 @@
+<script setup lang="ts">
+// Supports weights 100-900
+import '@fontsource-variable/inter';
+
+</script>
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <h1>Hello world</h1>
-  </div>
+  <NuxtPage />
 </template>
