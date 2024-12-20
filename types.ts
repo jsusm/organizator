@@ -8,3 +8,9 @@ export interface Operation {
   tag: String;
 //  source: String;
 }
+
+export interface PerDayInformation {
+  transactions: number;
+  balance: number;
+  date: Date;
+}
