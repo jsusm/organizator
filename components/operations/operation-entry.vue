@@ -5,7 +5,11 @@ import { format } from 'date-fns'
 defineProps<{ operation: Operation }>()
 </script>
 <template>
-  <div class="flex justify-between align-center border border-stone-800 px-4 py-2 rounded-lg">
+  <div class="flex items-center border border-stone-800 px-4 py-2 rounded-lg gap-4">
+    <div class="w-10 h-10 rounded-lg border text-orange-600 border-orange-600 bg-orange-950 flex">
+      <Icon name="tabler:carrot" class="m-auto w-5 h-5 stroke-1"/>
+    </div>
+  <div class="flex-1 flex justify-between align-center ">
     <div>
       <p class="text-stone-300">{{ operation.tag }}</p>
       <p class="text-sm text-stone-500">{{ operation.description }}</p>
@@ -14,5 +18,7 @@ defineProps<{ operation: Operation }>()
       <p class="text-red-400 font-medium text-right">{{ operation.amount.toFixed(2) }}</p>
       <p class="text-sm text-stone-500 text-right">{{ format(operation.date, "MMM d") }}</p>
     </div>
+  </div>
+
   </div>
 </template>
