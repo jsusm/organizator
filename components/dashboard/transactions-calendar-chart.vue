@@ -80,12 +80,13 @@ const calendarData = { ...getCalendarMetadata(), dayInfo: mapDayInformation(bala
 
 </script>
 <template>
-  <div class="max-w-sm border border-stone-700 p-4 rounded-lg">
+  <div class="max-w-56 min-w-52 border border-stone-700 p-4 rounded-lg">
     <div class="pb-4 flex justify-between">
-      <p class="text-stone-200">June 2024</p>
+      <p class="text-stone-200">{{ new Intl.DateTimeFormat("en-US", { month: 'long', year: 'numeric' }).format(new
+        Date())}}</p>
     </div>
-    <div class="grid grid-cols-7 gap-2 pb-2">
-      <p class="text-xs text-stone-600 justify-items-center" v-for="day in daysOfWeek">
+    <div class="grid grid-cols-7 gap-2 pb-2 justify-items-center">
+      <p class="text-xs text-stone-600 " v-for="day in daysOfWeek">
         {{ day }}
       </p>
     </div>

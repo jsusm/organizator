@@ -9,6 +9,6 @@ const xFormatter = (tick: number | Date, i: number, ticks: number[] | Date[]) =>
 
 </script>
 <template>
-  <AreaChart class="h-48 w-96" :data="chartData" index="date" :y-formatter="xFormatter" :categories="['balance']"
-    :colors="['#fbbf24']" />
+  <AreaChart class="h-48 sm:h-72" :data="chartData" index="date"
+    :y-formatter="xFormatter" :categories="['balance']" :colors="['#fbbf24']" />
 </template>

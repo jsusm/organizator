@@ -1,8 +1,57 @@
 <script setup lang="ts">
+import { operations } from '~/mockData/operations';
 </script>
 
 <template>
-  <div class="flex justify-center py-32">
-    <DashboardBalanceChart/>
+  <div class="sm:container mx-auto py-16">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-7">
+      <div class="col-span-4 space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <Card>
+            <CardHeader class="flex flex-row items-center justify-between pb-2">
+              <CardTitle class="text-sm font-medium">Income</CardTitle>
+              <Icon class="text-green-500 w-5 h-5" name="tabler:trending-up" />
+            </CardHeader>
+            <CardContent>
+              <p class="text-2xl font-bold">$1230.22</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader class="flex flex-row items-center justify-between pb-2">
+              <CardTitle class="text-sm font-medium">Outcome</CardTitle>
+              <Icon  class="text-rose-500 w-5 h-5" name="tabler:trending-down" />
+            </CardHeader>
+            <CardContent>
+              <p class="text-2xl font-bold">$1230.22</p>
+            </CardContent>
+          </Card>
+        </div>
+        <div class="flex flex-col md:flex-row gap-4">
+          <DashboardTransactionsCalendarChart />
+          <div class="border flex-1 rounded-lg">
+          </div>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              Balance
+            </CardTitle>
+            <p class="text-sm text-stone-400">Track your balance over the last month</p>
+          </CardHeader>
+          <CardContent class="pl-2 pb-16">
+            <DashboardBalanceChart />
+          </CardContent>
+        </Card>
+      </div>
+      <Card class="col-span-3">
+        <CardHeader>
+          <CardTitle>Operations</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Operations :operations="operations" />
+        </CardContent>
+      </Card>
+    </div>
+
   </div>
 </template>
