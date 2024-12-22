@@ -1,12 +1,51 @@
 <script setup lang="ts">
 import { operations } from '~/mockData/operations';
+
+type Category = {
+  title: string;
+  iconName: string;
+  color: string;
+}
+
+const categories: Category[] = [
+  {
+    title: 'Food',
+    iconName: 'carrot',
+    color: 'orange',
+  },
+  {
+    title: 'Health',
+    iconName: 'activity',
+    color: 'blue',
+  },
+  {
+    title: 'Home',
+    iconName: 'home',
+    color: 'indigo',
+  },
+  {
+    title: 'Education',
+    iconName: 'book-2',
+    color: 'green',
+  },
+]
+
 </script>
 
 <template>
   <div class="sm:container mx-auto py-16">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-7">
-      <div class="col-span-4 space-y-4">
-        <div class="grid md:grid-cols-2 gap-4">
+      <div class="md:col-span-4 space-y-4">
+        <div class="grid lg:grid-cols-3 gap-4">
+          <Card>
+            <CardHeader class="flex flex-row items-center justify-between pb-2">
+              <CardTitle class="text-sm font-medium">Balance</CardTitle>
+              <Icon class="text-stone-500 w-5 h-5" name="tabler:currency-dollar" />
+            </CardHeader>
+            <CardContent>
+              <p class="text-2xl font-bold">$1230.22</p>
+            </CardContent>
+          </Card>
           <Card>
             <CardHeader class="flex flex-row items-center justify-between pb-2">
               <CardTitle class="text-sm font-medium">Income</CardTitle>
@@ -19,17 +58,41 @@ import { operations } from '~/mockData/operations';
           <Card>
             <CardHeader class="flex flex-row items-center justify-between pb-2">
               <CardTitle class="text-sm font-medium">Outcome</CardTitle>
-              <Icon  class="text-rose-500 w-5 h-5" name="tabler:trending-down" />
+              <Icon class="text-rose-500 w-5 h-5" name="tabler:trending-down" />
             </CardHeader>
             <CardContent>
               <p class="text-2xl font-bold">$1230.22</p>
             </CardContent>
           </Card>
         </div>
-        <div class="flex flex-col md:flex-row gap-4">
-          <DashboardTransactionsCalendarChart />
-          <div class="border flex-1 rounded-lg">
-          </div>
+        <div class="flex flex-col lg:flex-row gap-4">
+          <DashboardTransactionsCalendarChart class="self-center"/>
+          <Card class="border flex-1 rounded-lg">
+            <CardHeader class="flex flex-row justify-between items-center">
+              <CardTitle>Categories</CardTitle>
+              <Button variant="secondary">Create Category</Button>
+            </CardHeader>
+            <CardContent class="flex">
+              <div class="flex flex-wrap gap-2">
+                <TooltipProvider>
+                  <Tooltip v-for="category in categories">
+                    <TooltipTrigger>
+                      <span
+                        :class="[`bg-${category.color}-950`, `hover:bg-${category.color}-950`, `border-${category.color}-600`, `text-${category.color}-600`]"
+                        class="border h-10 w-10 flex rounded-lg transition-colors">
+                        <Icon :name="`tabler:${category.iconName}`" class="w-5 h-5 m-auto" />
+                      </span>
+
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      {{ category.title }}
+                    </TooltipContent>
+                  </Tooltip>
+
+                </TooltipProvider>
+              </div>
+            </CardContent>
+          </Card>
         </div>
         <Card>
           <CardHeader>
@@ -43,7 +106,7 @@ import { operations } from '~/mockData/operations';
           </CardContent>
         </Card>
       </div>
-      <Card class="col-span-3">
+      <Card class="md:col-span-3">
         <CardHeader>
           <CardTitle>Operations</CardTitle>
         </CardHeader>

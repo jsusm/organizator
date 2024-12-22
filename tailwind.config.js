@@ -4,7 +4,45 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  safelist: ["dark"],
+  safelist: [
+    "dark",
+
+    // Colors for categories
+    'bg-indigo-950',
+    'text-indigo-600',
+    'border-indigo-600',
+    'hover:bg-indigo-900',
+
+    'bg-orange-950',
+    'text-orange-600',
+    'border-orange-600',
+    'hover:bg-orange-900',
+    
+    'bg-yellow-950',
+    'text-yellow-600',
+    'border-yellow-600',
+    'hover:bg-yellow-900',
+
+    'bg-rose-950',
+    'text-rose-600',
+    'border-rose-600',
+    'hover:bg-rose-900',
+
+    'bg-blue-950',
+    'text-blue-600',
+    'border-blue-600',
+    'hover:bg-blue-900',
+
+    'bg-violet-950',
+    'text-violet-600',
+    'border-violet-600',
+    'hover:bg-violet-900',
+
+    'bg-green-950',
+    'text-green-600',
+    'border-green-600',
+    'hover:bg-green-900',
+  ],
   prefix: "",
 
   theme: {
