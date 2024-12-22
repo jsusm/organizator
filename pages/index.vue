@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { operations, categories } from '~/mockData/operations';
+import { operations } from '~/mockData/operations';
 </script>
 
 <template>
