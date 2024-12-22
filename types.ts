@@ -14,3 +14,10 @@ export interface PerDayInformation {
   balance: number;
   date: Date;
 }
+
+export interface Category {
+  title: string;
+  iconName: string;
+  color: string;
+}
+

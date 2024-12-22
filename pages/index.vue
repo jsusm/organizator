@@ -1,35 +1,5 @@
 <script setup lang="ts">
-import { operations } from '~/mockData/operations';
-
-type Category = {
-  title: string;
-  iconName: string;
-  color: string;
-}
-
-const categories: Category[] = [
-  {
-    title: 'Food',
-    iconName: 'carrot',
-    color: 'orange',
-  },
-  {
-    title: 'Health',
-    iconName: 'activity',
-    color: 'blue',
-  },
-  {
-    title: 'Home',
-    iconName: 'home',
-    color: 'indigo',
-  },
-  {
-    title: 'Education',
-    iconName: 'book-2',
-    color: 'green',
-  },
-]
-
+import { operations, categories } from '~/mockData/operations';
 </script>
 
 <template>
@@ -67,27 +37,7 @@ const categories: Category[] = [
         </div>
         <div class="flex flex-col lg:flex-row gap-4">
           <DashboardTransactionsCalendarChart class="self-center"/>
-          <Card class="border flex-1 rounded-lg">
-            <CardHeader class="flex flex-row justify-between items-center">
-              <CardTitle>Categories</CardTitle>
-              <Button variant="secondary">Create Category</Button>
-            </CardHeader>
-            <CardContent class="flex">
-              <div class="flex flex-wrap gap-2">
-                <TooltipProvider>
-                  <Tooltip v-for="category in categories">
-                    <TooltipTrigger>
-                      <DashboardCategory :iconName="category.iconName" :color="category.color" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      {{ category.title }}
-                    </TooltipContent>
-                  </Tooltip>
-
-                </TooltipProvider>
-              </div>
-            </CardContent>
-          </Card>
+          <DashboardCategoriesCard />
         </div>
         <Card>
           <CardHeader>

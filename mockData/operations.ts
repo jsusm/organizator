@@ -1,4 +1,27 @@
-import type { Operation, PerDayInformation } from "~/types";
+import type { Category, Operation, PerDayInformation } from "~/types";
+
+export const categories: Category[] = [
+  {
+    title: 'Food',
+    iconName: 'carrot',
+    color: 'orange',
+  },
+  {
+    title: 'Health',
+    iconName: 'activity',
+    color: 'blue',
+  },
+  {
+    title: 'Home',
+    iconName: 'home',
+    color: 'indigo',
+  },
+  {
+    title: 'Education',
+    iconName: 'book-2',
+    color: 'green',
+  },
+]
 
 export const balancePerDay: PerDayInformation[] = [
     {
