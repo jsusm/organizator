@@ -77,12 +77,7 @@ const categories: Category[] = [
                 <TooltipProvider>
                   <Tooltip v-for="category in categories">
                     <TooltipTrigger>
-                      <span
-                        :class="[`bg-${category.color}-950`, `hover:bg-${category.color}-950`, `border-${category.color}-600`, `text-${category.color}-600`]"
-                        class="border h-10 w-10 flex rounded-lg transition-colors">
-                        <Icon :name="`tabler:${category.iconName}`" class="w-5 h-5 m-auto" />
-                      </span>
-
+                      <DashboardCategory :iconName="category.iconName" :color="category.color" />
                     </TooltipTrigger>
                     <TooltipContent>
                       {{ category.title }}

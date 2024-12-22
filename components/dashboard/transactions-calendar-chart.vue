@@ -80,7 +80,7 @@ const calendarData = { ...getCalendarMetadata(), dayInfo: mapDayInformation(bala
 
 </script>
 <template>
-  <div class="max-w-56 min-w-52 border border-stone-700 p-4 rounded-lg">
+  <div class="max-w-56 min-w-52 border border-stone-800 p-4 rounded-lg">
     <div class="pb-4 flex justify-between">
       <p class="text-stone-200">{{ new Intl.DateTimeFormat("en-US", { month: 'long', year: 'numeric' }).format(new
         Date())}}</p>

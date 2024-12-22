@@ -6,9 +6,7 @@ defineProps<{ operation: Operation }>()
 </script>
 <template>
   <div class="flex items-center border border-stone-800 px-4 py-2 rounded-lg gap-4">
-    <div class="w-10 h-10 rounded-lg border text-orange-600 border-orange-600 bg-orange-950 flex">
-      <Icon name="tabler:carrot" class="m-auto w-5 h-5 stroke-1"/>
-    </div>
+    <DashboardCategory iconName="carrot" color="violet" />
   <div class="flex-1 flex justify-between align-center ">
     <div>
       <p class="text-stone-300">{{ operation.tag }}</p>
