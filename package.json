@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.0",
@@ -39,6 +40,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.11"
+    "@iconify-json/tabler": "^1.2.11",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9"
   }
 }

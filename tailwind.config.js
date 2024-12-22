@@ -1,5 +1,5 @@
-const animate = require("tailwindcss-animate")
-const defaultTheme = require("tailwindcss/defaultTheme")
+const animate = require("tailwindcss-animate");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,40 +8,40 @@ module.exports = {
     "dark",
 
     // Colors for categories
-    'bg-indigo-950',
-    'text-indigo-600',
-    'border-indigo-600',
-    'hover:bg-indigo-900',
+    "bg-indigo-950",
+    "text-indigo-600",
+    "border-indigo-600",
+    "hover:bg-indigo-900",
 
-    'bg-orange-950',
-    'text-orange-600',
-    'border-orange-600',
-    'hover:bg-orange-900',
-    
-    'bg-yellow-950',
-    'text-yellow-600',
-    'border-yellow-600',
-    'hover:bg-yellow-900',
+    "bg-orange-950",
+    "text-orange-600",
+    "border-orange-600",
+    "hover:bg-orange-900",
 
-    'bg-rose-950',
-    'text-rose-600',
-    'border-rose-600',
-    'hover:bg-rose-900',
+    "bg-yellow-950",
+    "text-yellow-600",
+    "border-yellow-600",
+    "hover:bg-yellow-900",
 
-    'bg-blue-950',
-    'text-blue-600',
-    'border-blue-600',
-    'hover:bg-blue-900',
+    "bg-rose-950",
+    "text-rose-600",
+    "border-rose-600",
+    "hover:bg-rose-900",
 
-    'bg-violet-950',
-    'text-violet-600',
-    'border-violet-600',
-    'hover:bg-violet-900',
+    "bg-blue-950",
+    "text-blue-600",
+    "border-blue-600",
+    "hover:bg-blue-900",
 
-    'bg-green-950',
-    'text-green-600',
-    'border-green-600',
-    'hover:bg-green-900',
+    "bg-violet-950",
+    "text-violet-600",
+    "border-violet-600",
+    "hover:bg-violet-900",
+
+    "bg-green-950",
+    "text-green-600",
+    "border-green-600",
+    "hover:bg-green-900",
   ],
   prefix: "",
 
@@ -54,12 +54,11 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['var(--font-sans)', defaultTheme.fontFamily.sans]
-    }
-    ,
+      sans: ["var(--font-sans)", defaultTheme.fontFamily.sans],
+    },
     extend: {
       fontFamily: {
-        mono: ['var(--font-mono)', 'monospace'],
+        mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -113,10 +112,10 @@ module.exports = {
         },
         "collapsible-down": {
           from: { height: 0 },
-          to: { height: 'var(--radix-collapsible-content-height)' },
+          to: { height: "var(--radix-collapsible-content-height)" },
         },
         "collapsible-up": {
-          from: { height: 'var(--radix-collapsible-content-height)' },
+          from: { height: "var(--radix-collapsible-content-height)" },
           to: { height: 0 },
         },
       },
@@ -129,4 +128,4 @@ module.exports = {
     },
   },
   plugins: [animate],
-}
+};

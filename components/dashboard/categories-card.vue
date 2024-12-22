@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { categories } from '~/mockData/operations';
+import { categories } from "~/mockData/operations";
 </script>
 <template>
   <Card class="border flex-1 rounded-lg">
@@ -12,7 +12,10 @@ import { categories } from '~/mockData/operations';
         <TooltipProvider>
           <Tooltip v-for="category in categories">
             <TooltipTrigger>
-              <DashboardCategory :iconName="category.iconName" :color="category.color" />
+              <DashboardCategory
+                :iconName="category.iconName"
+                :color="category.color"
+              />
             </TooltipTrigger>
             <TooltipContent>
               {{ category.title }}

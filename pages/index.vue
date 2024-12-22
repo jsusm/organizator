@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { operations } from '~/mockData/operations';
+import { operations } from "~/mockData/operations";
 </script>
 
 <template>
@@ -10,7 +10,10 @@ import { operations } from '~/mockData/operations';
           <Card>
             <CardHeader class="flex flex-row items-center justify-between pb-2">
               <CardTitle class="text-sm font-medium">Balance</CardTitle>
-              <Icon class="text-stone-500 w-5 h-5" name="tabler:currency-dollar" />
+              <Icon
+                class="text-stone-500 w-5 h-5"
+                name="tabler:currency-dollar"
+              />
             </CardHeader>
             <CardContent>
               <p class="text-2xl font-bold">$1230.22</p>
@@ -36,15 +39,15 @@ import { operations } from '~/mockData/operations';
           </Card>
         </div>
         <div class="flex flex-col lg:flex-row gap-4">
-          <DashboardTransactionsCalendarChart class="self-center"/>
+          <DashboardTransactionsCalendarChart class="self-center" />
           <DashboardCategoriesCard />
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>
-              Balance
-            </CardTitle>
-            <p class="text-sm text-stone-400">Track your balance over the last month</p>
+            <CardTitle> Balance </CardTitle>
+            <p class="text-sm text-stone-400">
+              Track your balance over the last month
+            </p>
           </CardHeader>
           <CardContent class="pl-2 pb-16">
             <DashboardBalanceChart />
@@ -60,6 +63,5 @@ import { operations } from '~/mockData/operations';
         </CardContent>
       </Card>
     </div>
-
   </div>
 </template>

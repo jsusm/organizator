@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --font-sans: 'Inter Variable';
-    --font-mono: 'JetBrains Mono';
+    --font-sans: "Inter Variable";
+    --font-mono: "JetBrains Mono";
 
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;

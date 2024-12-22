@@ -1,4 +1,4 @@
-export type Currency = "USD"
+export type Currency = "USD";
 
 export interface Operation {
   amount: Number;
@@ -6,7 +6,7 @@ export interface Operation {
   date: Date;
   description: String;
   tag: String;
-//  source: String;
+  //  source: String;
 }
 
 export interface PerDayInformation {
@@ -20,4 +20,3 @@ export interface Category {
   iconName: string;
   color: string;
 }
-
