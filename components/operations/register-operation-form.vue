@@ -24,6 +24,10 @@ import { toDate } from "radix-vue/date";
 import { cn } from "@/lib/utils";
 import PopoverContent from "../ui/popover/PopoverContent.vue";
 import { categories } from "~/mockData/operations";
+import Dialog from "../ui/dialog/Dialog.vue";
+import DialogTrigger from "../ui/dialog/DialogTrigger.vue";
+import DialogContent from "../ui/dialog/DialogContent.vue";
+import DialogDescription from "../ui/dialog/DialogDescription.vue";
 
 const formSchema = toTypedSchema(
   z.object({
@@ -148,7 +152,25 @@ const onSubmit = handleSubmit((values) => {
       <!-- category -->
       <FormField name="categoryId" v-slot="{ componentField }">
         <FormItem>
-          <FormLabel>Category</FormLabel>
+          <div class="flex items-center">
+            <FormLabel class="flex-1">Category</FormLabel>
+            <div>
+              <Dialog>
+                <DialogTrigger>
+                  <Button size="sm" type="button" variant="outline"
+                    >Create new</Button
+                  >
+                </DialogTrigger>
+                <DialogContent class="w-96">
+                  <DialogHeader>
+                    <DialogTitle>Create Category</DialogTitle>
+                    <DialogDescription>Categorize your operations findthem easily</DialogDescription>
+                  </DialogHeader>
+                  <OperationsCreateCategoryForm />
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
 
           <Select v-bind="componentField">
             <FormControl>
@@ -182,10 +204,9 @@ const onSubmit = handleSubmit((values) => {
               placeholder="Hamburgers with friends, pay electicity, ..."
             />
           </FormControl>
-          <FormDescription
-            >Use a description that let you remember what you
-            did</FormDescription
-          >
+          <FormDescription>
+            Use a description that let you remember what you did
+          </FormDescription>
           <FormMessage />
         </FormItem>
       </FormField>

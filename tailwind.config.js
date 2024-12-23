@@ -9,37 +9,37 @@ module.exports = {
 
     // Colors for categories
     "bg-indigo-950",
-    "text-indigo-600",
+    "text-indigo-500",
     "border-indigo-600",
     "hover:bg-indigo-900",
 
     "bg-orange-950",
-    "text-orange-600",
+    "text-orange-500",
     "border-orange-600",
     "hover:bg-orange-900",
 
     "bg-yellow-950",
-    "text-yellow-600",
+    "text-yellow-500",
     "border-yellow-600",
     "hover:bg-yellow-900",
 
     "bg-rose-950",
-    "text-rose-600",
+    "text-rose-500",
     "border-rose-600",
     "hover:bg-rose-900",
 
     "bg-blue-950",
-    "text-blue-600",
+    "text-blue-500",
     "border-blue-600",
     "hover:bg-blue-900",
 
     "bg-violet-950",
-    "text-violet-600",
+    "text-violet-500",
     "border-violet-600",
     "hover:bg-violet-900",
 
     "bg-green-950",
-    "text-green-600",
+    "text-green-500",
     "border-green-600",
     "hover:bg-green-900",
   ],
