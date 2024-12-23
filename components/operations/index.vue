@@ -23,7 +23,9 @@ const oprts = groupByDay(props.operations);
     <CardHeader class="flex flex-row justify-between items-center">
       <CardTitle>Operations</CardTitle>
       <div>
-        <Button variant="secondary">Register Operation</Button>
+        <Button as-child variant="secondary">
+          <NuxtLink to="/register-operation">Register Operation</NuxtLink>
+        </Button>
       </div>
     </CardHeader>
     <CardContent>

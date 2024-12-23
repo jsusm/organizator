@@ -146,10 +146,10 @@ const onSubmit = handleSubmit((values) => {
       </FormField>
 
       <!-- category -->
-      <FormField name="categoryId" v-slot="{componentField}">
+      <FormField name="categoryId" v-slot="{ componentField }">
         <FormItem>
           <FormLabel>Category</FormLabel>
-          
+
           <Select v-bind="componentField">
             <FormControl>
               <SelectTrigger>
@@ -158,31 +158,41 @@ const onSubmit = handleSubmit((values) => {
               <SelectContent>
                 <SelectGroup>
                   <SelectItem value="no_category">No Category</SelectItem>
-                  <SelectItem v-for="category in categories" :value="category.id">{{category.title}}</SelectItem>
+                  <SelectItem
+                    v-for="category in categories"
+                    :value="category.id"
+                    >{{ category.title }}</SelectItem
+                  >
                 </SelectGroup>
               </SelectContent>
             </FormControl>
           </Select>
           <FormDescription>Categorize your operations</FormDescription>
-          <FormMessage/>
+          <FormMessage />
         </FormItem>
       </FormField>
 
       <!-- Description -->
-      <FormField name="description" v-slot="{componentField}">
+      <FormField name="description" v-slot="{ componentField }">
         <FormItem>
           <FormLabel>Description</FormLabel>
           <FormControl>
-            <Input v-bind="componentField" placeholder="Hamburgers with friends, pay electicity, ..."/>
+            <Input
+              v-bind="componentField"
+              placeholder="Hamburgers with friends, pay electicity, ..."
+            />
           </FormControl>
-          <FormDescription>Use a description that let you remember what you did</FormDescription>
-          <FormMessage/>
+          <FormDescription
+            >Use a description that let you remember what you
+            did</FormDescription
+          >
+          <FormMessage />
         </FormItem>
       </FormField>
 
       <div class="flex flex-col sm:flex-row justify-end gap-4">
-        <Button type="submit" variant="secondary">Cancel</Button>
-        <Button type="button">Submit</Button>
+        <Button type="button" variant="secondary">Cancel</Button>
+        <Button type="submit">Submit</Button>
       </div>
     </form>
   </div>
