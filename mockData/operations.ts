@@ -2,21 +2,25 @@ import type { Category, Operation, PerDayInformation } from "~/types";
 
 export const categories: Category[] = [
   {
+    id: "1",
     title: "Food",
     iconName: "carrot",
     color: "orange",
   },
   {
+    id: "2",
     title: "Health",
     iconName: "activity",
     color: "blue",
   },
   {
+    id: "3",
     title: "Home",
     iconName: "home",
     color: "indigo",
   },
   {
+    id: "4",
     title: "Education",
     iconName: "book-2",
     color: "green",

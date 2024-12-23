@@ -16,6 +16,7 @@ export interface PerDayInformation {
 }
 
 export interface Category {
+  id: string;
   title: string;
   iconName: string;
   color: string;
