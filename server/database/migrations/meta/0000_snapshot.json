@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "14bd38c0-9be1-403f-8f2d-4de6f59196af",
+  "id": "a015e690-041b-42e6-b36f-276364ebc56d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories_table": {
@@ -13,6 +13,13 @@
           "primaryKey": true,
           "notNull": true,
           "autoincrement": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         },
         "color": {
           "name": "color",
@@ -81,12 +88,8 @@
           "name": "operations_table_category_id_categories_table_id_fk",
           "tableFrom": "operations_table",
           "tableTo": "categories_table",
-          "columnsFrom": [
-            "category_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["category_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

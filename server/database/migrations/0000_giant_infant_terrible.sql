@@ -1,5 +1,6 @@
 CREATE TABLE `categories_table` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`title` text NOT NULL,
 	`color` text DEFAULT 'gray' NOT NULL,
 	`icon` text NOT NULL
 );

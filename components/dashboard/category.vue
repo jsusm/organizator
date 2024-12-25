@@ -20,7 +20,8 @@ const props = withDefaults(defineProps<Props>(), {
     :class="
       cn(
         {
-          [`bg-${props.color}-950 border-${props.color}-600 text-${props.color}-500`]: color,
+          [`bg-${props.color}-950 border-${props.color}-600 text-${props.color}-500`]:
+            color,
           [`bg-stone-950 border-stone-600 text-stone-500`]: !color,
         },
         props.class,

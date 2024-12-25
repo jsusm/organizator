@@ -1,16 +1,6 @@
 <script setup lang="ts">
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
-import * as z from "zod";
-
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import {
   CalendarDate,
   DateFormatter,
@@ -18,25 +8,28 @@ import {
   parseDate,
   today,
 } from "@internationalized/date";
-import Popover from "../ui/popover/Popover.vue";
-import PopoverTrigger from "../ui/popover/PopoverTrigger.vue";
 import { toDate } from "radix-vue/date";
 import { cn } from "@/lib/utils";
-import PopoverContent from "../ui/popover/PopoverContent.vue";
 import { categories } from "~/mockData/operations";
-import Dialog from "../ui/dialog/Dialog.vue";
-import DialogTrigger from "../ui/dialog/DialogTrigger.vue";
-import DialogContent from "../ui/dialog/DialogContent.vue";
-import DialogDescription from "../ui/dialog/DialogDescription.vue";
+import {
+  createOperationSchema,
+  type CreateOperationSchema,
+} from "~/schemas/operations";
+import type { CreateCategorySchema } from "~/schemas/categories";
 
-const formSchema = toTypedSchema(
-  z.object({
-    amount: z.number().gt(0, "The operation can't have 0 amount"),
-    date: z.string(),
-    description: z.string().optional(),
-    categoryId: z.string(),
-  }),
-);
+defineProps<{
+  submitting: boolean;
+  error?: string;
+  submittingCategory: boolean;
+  categoryError?: string;
+}>();
+
+const emit = defineEmits<{
+  submit: [values: CreateOperationSchema];
+  submitCategory: [values: CreateCategorySchema];
+}>();
+
+const formSchema = toTypedSchema(createOperationSchema);
 
 const { handleSubmit, setFieldValue, values } = useForm({
   validationSchema: formSchema,
@@ -55,7 +48,7 @@ const operationDate = computed({
 });
 
 const onSubmit = handleSubmit((values) => {
-  console.log({ values });
+  emit("submit", values);
 });
 </script>
 <template>
@@ -164,9 +157,16 @@ const onSubmit = handleSubmit((values) => {
                 <DialogContent class="w-96">
                   <DialogHeader>
                     <DialogTitle>Create Category</DialogTitle>
-                    <DialogDescription>Categorize your operations findthem easily</DialogDescription>
+                    <DialogDescription
+                      >Categorize your operations findthem
+                      easily</DialogDescription
+                    >
                   </DialogHeader>
-                  <OperationsCreateCategoryForm />
+                  <OperationsCreateCategoryForm
+                    :submitting="submittingCategory"
+                    :error="categoryError"
+                    @submit="(values) => $emit('submitCategory', values)"
+                  />
                 </DialogContent>
               </Dialog>
             </div>
@@ -213,7 +213,14 @@ const onSubmit = handleSubmit((values) => {
 
       <div class="flex flex-col sm:flex-row justify-end gap-4">
         <Button type="button" variant="secondary">Cancel</Button>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" :disabled="submitting">
+          <Icon
+            name="tabler:loader-2"
+            v-if="submitting"
+            class="w-4 h-4 animate-spin mr-1"
+          />
+          Submit
+        </Button>
       </div>
     </form>
   </div>
