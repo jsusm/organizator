@@ -4,6 +4,7 @@ import type { CreateCategorySchema } from "~/schemas/categories";
 const submitting = ref(false);
 
 const handleSubmit = (values: CreateCategorySchema) => {
+  // TODO: handle server error
   submitting.value = true;
   $fetch("/api/categories", {
     method: "post",

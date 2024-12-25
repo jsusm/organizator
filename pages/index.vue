@@ -54,7 +54,7 @@ import { operations } from "~/mockData/operations";
           </CardContent>
         </Card>
       </div>
-      <Operations :operations="operations" class="col-span-3" />
+      <Operations :operations="operations" class="md:col-span-3" />
     </div>
   </div>
 </template>
