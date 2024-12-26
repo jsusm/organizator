@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
   const categoriesResult = db
     .select()
     .from(categories)
-    .limit(10)
     .orderBy(categories.id);
 
   return categoriesResult;
