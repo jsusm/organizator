@@ -177,7 +177,7 @@ const onSubmit = handleSubmit((values) => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="no_category">No Category</SelectItem>
+                  <SelectItem value="-1">No Category</SelectItem>
                   <SelectItem
                     v-for="category in categories.data.value"
                     :value="category.id.toString()"
