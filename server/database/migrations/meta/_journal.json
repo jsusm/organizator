@@ -8,6 +8,13 @@
       "when": 1735084315693,
       "tag": "0000_giant_infant_terrible",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1735245307115,
+      "tag": "0001_careful_loki",
+      "breakpoints": true
     }
   ]
 }

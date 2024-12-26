@@ -17,7 +17,7 @@ export const operations = sqliteTable(
     id: integer("id").primaryKey({ autoIncrement: true }),
     date: integer("date", { mode: "timestamp" }).notNull(),
     amount: integer("amount").notNull(),
-    categoryId: integer("category_id").references(() => categories.id),
+    categoryId: integer("category_id").references(() => categories.id, { onDelete: 'set null'}),
     description: text("description"),
   },
   () => [],
