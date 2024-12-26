@@ -10,7 +10,6 @@ import {
 } from "@internationalized/date";
 import { toDate } from "radix-vue/date";
 import { cn } from "@/lib/utils";
-import { categories } from "~/mockData/operations";
 import {
   createOperationSchema,
   type CreateOperationSchema,
@@ -28,6 +27,8 @@ const emit = defineEmits<{
   submit: [values: CreateOperationSchema];
   submitCategory: [values: CreateCategorySchema];
 }>();
+
+const { categories } = await useCategories()
 
 const formSchema = toTypedSchema(createOperationSchema);
 
@@ -181,8 +182,8 @@ const onSubmit = handleSubmit((values) => {
                 <SelectGroup>
                   <SelectItem value="no_category">No Category</SelectItem>
                   <SelectItem
-                    v-for="category in categories"
-                    :value="category.id"
+                    v-for="category in categories.data.value"
+                    :value="category.id.toString()"
                     >{{ category.title }}</SelectItem
                   >
                 </SelectGroup>
