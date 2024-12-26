@@ -28,7 +28,7 @@ const emit = defineEmits<{
   submitCategory: [values: CreateCategorySchema];
 }>();
 
-const { categories } = await useCategories()
+const { categories } = await useCategories();
 
 const formSchema = toTypedSchema(createOperationSchema);
 
@@ -148,29 +148,26 @@ const onSubmit = handleSubmit((values) => {
         <FormItem>
           <div class="flex items-center">
             <FormLabel class="flex-1">Category</FormLabel>
-            <div>
-              <Dialog>
-                <DialogTrigger>
-                  <Button size="sm" type="button" variant="outline"
-                    >Create new</Button
-                  >
-                </DialogTrigger>
-                <DialogContent class="w-96">
-                  <DialogHeader>
-                    <DialogTitle>Create Category</DialogTitle>
-                    <DialogDescription
-                      >Categorize your operations findthem
-                      easily</DialogDescription
-                    >
-                  </DialogHeader>
-                  <OperationsCreateCategoryForm
-                    :submitting="submittingCategory"
-                    :error="categoryError"
-                    @submit="(values) => $emit('submitCategory', values)"
-                  />
-                </DialogContent>
-              </Dialog>
-            </div>
+            <Dialog>
+              <DialogTrigger as-child>
+                <Button size="sm" type="button" variant="outline">
+                  Create new
+                </Button>
+              </DialogTrigger>
+              <DialogContent class="w-96">
+                <DialogHeader>
+                  <DialogTitle>Create Category</DialogTitle>
+                  <DialogDescription>
+                    Categorize your operations find them easily
+                  </DialogDescription>
+                </DialogHeader>
+                <OperationsCreateCategoryForm
+                  :submitting="submittingCategory"
+                  :error="categoryError"
+                  @submit="(values) => $emit('submitCategory', values)"
+                />
+              </DialogContent>
+            </Dialog>
           </div>
 
           <Select v-bind="componentField">
