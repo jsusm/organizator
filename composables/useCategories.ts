@@ -1,3 +1,5 @@
+import type { CreateCategorySchema } from "~/schemas/categories";
+
 export async function useCategories() {
   const categories = await useAsyncData("categories", () =>
     $fetch("/api/categories"),
@@ -13,5 +15,13 @@ export async function useCategories() {
     categories.refresh();
   };
 
-  return { categories, deleteCategory };
+  const createCategory = async (values: CreateCategorySchema) => {
+    await $fetch("/api/categories", {
+      method: "post",
+      body: values,
+    });
+    categories.refresh();
+  };
+
+  return { categories, deleteCategory, createCategory };
 }

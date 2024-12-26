@@ -17,6 +17,7 @@ const handleSubmit = (values: CreateOperationSchema) => {
 const submittingCategory = ref(true);
 const handleCategorySubmit = (values: CreateCategorySchema) => {
   // TODO: handle server error
+  // TODO: use category composable
   submittingCategory.value = true;
   $fetch("/api/categories", {
     method: "post",

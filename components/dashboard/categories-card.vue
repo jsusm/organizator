@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import type { CreateCategorySchema } from "~/schemas/categories";
 import {
   ContextMenu,
   ContextMenuTrigger,
   ContextMenuItem,
 } from "../ui/context-menu";
+import Dialog from "../ui/dialog/Dialog.vue";
 
-const { categories, deleteCategory } = await useCategories();
+const { categories, deleteCategory, createCategory } = await useCategories();
 
+// delete category
 const deleteCategoryId = ref<number | null>(null);
 
 function handleDeleteCategory(id: number) {
@@ -29,13 +32,30 @@ function confirmDelete() {
       // TODO: notify error
     });
 }
+
+// create category
+const creatingCategory = ref(false);
+const createCategoryFormOpen = ref(false);
+
+function handleCreateCategory(values: CreateCategorySchema) {
+  creatingCategory.value = true
+  createCategory(values)
+    .finally(() => {
+      createCategoryFormOpen.value=false;
+      creatingCategory.value = false;
+    })
+}
 </script>
 <template>
   <Card class="border flex-1 rounded-lg">
     <CardHeader class="flex flex-row justify-between items-center">
       <CardTitle>Categories</CardTitle>
-      <Button variant="secondary" as-child>
-        <NuxtLink to="/create-category"> Create Category </NuxtLink>
+      <Button
+        type="button"
+        variant="secondary"
+        @click="createCategoryFormOpen = true"
+      >
+        Create Category
       </Button>
     </CardHeader>
     <CardContent class="flex">
@@ -96,6 +116,22 @@ function confirmDelete() {
             Delete
           </Button>
         </DialogFooter>
+      </DialogContent>
+    </Dialog>
+
+    <Dialog
+      :open="createCategoryFormOpen"
+      @update:open="(v) => (createCategoryFormOpen = v)"
+    >
+      <DialogTrigger> </DialogTrigger>
+      <DialogContent class="w-96">
+        <DialogHeader>
+          <DialogTitle>Create Category</DialogTitle>
+          <DialogDescription
+            >Categorize your operations findthem easily</DialogDescription
+          >
+        </DialogHeader>
+        <OperationsCreateCategoryForm @submit="handleCreateCategory" :submitting="creatingCategory" />
       </DialogContent>
     </Dialog>
   </Card>
