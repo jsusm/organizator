@@ -4,7 +4,6 @@ import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   // TODO: handle authentication
-  const q = getQuery(event);
   const query = await getValidatedQuery(
     event,
     z.object({
