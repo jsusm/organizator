@@ -5,12 +5,29 @@ import {
   ContextMenuItem,
 } from "../ui/context-menu";
 
-const categories = await useCategories();
+const { categories, deleteCategory } = await useCategories();
 
 const deleteCategoryId = ref<number | null>(null);
 
 function handleDeleteCategory(id: number) {
   deleteCategoryId.value = id;
+}
+
+const deletingCategory = ref(false);
+
+function confirmDelete() {
+  if (deleteCategoryId.value === null) return;
+
+  deletingCategory.value = true;
+
+  deleteCategory(deleteCategoryId.value)
+    .finally(() => {
+      deleteCategoryId.value = null;
+      deletingCategory.value = false;
+    })
+    .catch(() => {
+      // TODO: notify error
+    });
 }
 </script>
 <template>
@@ -65,7 +82,19 @@ function handleDeleteCategory(id: number) {
           <DialogClose as-child>
             <Button variant="secondary"> Cancel </Button>
           </DialogClose>
-          <Button variant="destructive"> Delete </Button>
+          <Button
+            variant="destructive"
+            @click="confirmDelete"
+            :disabled="deletingCategory"
+          >
+            <Icon
+              name="tabler:loader-2"
+              v-if="deletingCategory"
+              class="w-4 h-4 animate-spin mr-1"
+            />
+
+            Delete
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
