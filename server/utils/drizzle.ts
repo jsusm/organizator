@@ -1,6 +1,10 @@
+import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
+import * as schema from '@/server/database/schema'
 
-export const db = drizzle({ connection: { url: process.env.DB_FILE_NAME! } });
+const client = createClient({ url: process.env.DB_FILE_NAME! })
+
+export const db = drizzle(client, { schema });
 
 export function useDB() {
   return db;
