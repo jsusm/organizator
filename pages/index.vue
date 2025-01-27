@@ -87,9 +87,14 @@ const transactions = [
 
 <template>
   <main class="mx-auto container max-w-screen-lg">
-    <div class="mt-24 space-y-4">
+    <div class="mt-24 flex justify-between">
       <div>
         <h1 class="text-2xl leading-tight font-medium">Transactions</h1>
+      </div>
+      <div>
+        <Button as-child>
+          <NuxtLink to="create-transaction"> Create Transaction </NuxtLink>
+        </Button>
       </div>
     </div>
     <div class="flex justify-center mt-12">

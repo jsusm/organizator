@@ -1,57 +1,56 @@
 <script setup lang="ts">
-// import { toast } from '@/components/ui/toast/use-toast'
-
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
-import { h } from "vue";
 import * as z from "zod";
-import CentsField from "~/components/ui/cents-field/CentsField.vue";
+import { toast } from "vue-sonner";
 
 const formSchema = toTypedSchema(
   z.object({
     description: z.string().optional(),
-    amount: z.string().refine((amount) => parseFloat(amount) > 0, {message: "Amount should be more than 0."}),
-    category: z.string().min(3, {message: "Be more descriptive."}),
-  }));
+    amount: z
+      .string()
+      .refine((amount) => parseFloat(amount) > 0, {
+        message: "Amount should be more than 0.",
+      }),
+    category: z.string().min(3, { message: "Be more descriptive." }),
+  }),
+);
 
-const cents = ref("0.00")
+const cents = ref("0.00");
 
 const { isFieldDirty, handleSubmit, setFieldValue } = useForm({
   validationSchema: formSchema,
   initialValues: {
     amount: cents.value,
-  }
+  },
 });
-
 
 const onUpdateCents = (e: Event) => {
   async function forceUpdate() {
-    const value = (e.target as HTMLInputElement).value
+    const value = (e.target as HTMLInputElement).value;
     // cents value needs to change to refect in input element
     // this value shoud be whatever
-    cents.value = "\t"
-    await nextTick()
-    const sanitizedValue = value.replace(/[^\d]/g, '')
-    let quantity = parseInt(sanitizedValue)
-    if(isNaN(quantity)) {
-      quantity = 0
+    cents.value = "\t";
+    await nextTick();
+    const sanitizedValue = value.replace(/[^\d]/g, "");
+    let quantity = parseInt(sanitizedValue);
+    if (isNaN(quantity)) {
+      quantity = 0;
     }
-    cents.value = (quantity / 100).toFixed(2)
-
+    cents.value = (quantity / 100).toFixed(2);
 
     // update form
-    setFieldValue('amount', cents.value)
+    setFieldValue("amount", cents.value);
   }
-  forceUpdate()
-}
+  forceUpdate();
+};
 
 const onSubmit = handleSubmit((values) => {
-  console.log(values)
-  // toast({
-  //   title: 'You submitted the following values:',
-  //   description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-  // })
-})
+  console.log(values);
+  toast("Transaction Created", {
+    description: "Transition was created succesfully",
+  });
+});
 </script>
 <template>
   <main class="mx-auto min-h-screen max-w-screen-lg flex flex-col">
@@ -77,21 +76,27 @@ const onSubmit = handleSubmit((values) => {
         </div>
         <form class="space-y-6" @submit="onSubmit">
           <FormField
-            v-slot="{errors}"
+            v-slot="{ errors }"
             name="amount"
             :validate-on-blur="!isFieldDirty"
           >
             <FormItem>
               <FormLabel>Amount</FormLabel>
               <FormControl>
-                <Input :default-value="cents" :value="cents" @input="onUpdateCents"/>
+                <Input
+                  :default-value="cents"
+                  :value="cents"
+                  @input="onUpdateCents"
+                />
               </FormControl>
-              <FormDescription v-if="!errors.length"> How much. </FormDescription>
+              <FormDescription v-if="!errors.length">
+                How much.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           </FormField>
           <FormField
-            v-slot="{ componentField}"
+            v-slot="{ componentField }"
             name="description"
             :validate-on-blur="!isFieldDirty"
           >
@@ -122,7 +127,9 @@ const onSubmit = handleSubmit((values) => {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormDescription v-if="!errors.length"> Be descriptive. </FormDescription>
+              <FormDescription v-if="!errors.length">
+                Be descriptive.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           </FormField>
