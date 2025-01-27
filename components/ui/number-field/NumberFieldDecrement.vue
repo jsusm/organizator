@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NumberFieldDecrementProps } from "radix-vue";
 import { cn } from "@/lib/utils";
-import { Minus } from "lucide-vue-next";
+// import { Minus } from "lucide-vue-next";
 import { NumberFieldDecrement, useForwardProps } from "radix-vue";
 import { computed, type HTMLAttributes } from "vue";
 
@@ -30,7 +30,7 @@ const forwarded = useForwardProps(delegatedProps);
     "
   >
     <slot>
-      <Minus class="h-4 w-4" />
+      <Icon name="lucide:minus" class="h-4 w-4" />
     </slot>
   </NumberFieldDecrement>
 </template>
