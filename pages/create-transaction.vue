@@ -7,11 +7,9 @@ import { toast } from "vue-sonner";
 const formSchema = toTypedSchema(
   z.object({
     description: z.string().optional(),
-    amount: z
-      .string()
-      .refine((amount) => parseFloat(amount) > 0, {
-        message: "Amount should be more than 0.",
-      }),
+    amount: z.string().refine((amount) => parseFloat(amount) > 0, {
+      message: "Amount should be more than 0.",
+    }),
     category: z.string().min(3, { message: "Be more descriptive." }),
   }),
 );
@@ -45,8 +43,16 @@ const onUpdateCents = (e: Event) => {
   forceUpdate();
 };
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
+const { createTransaction } = useTransactions();
+const onSubmit = handleSubmit(async (values) => {
+  createTransaction({
+    amount: parseFloat(values.amount),
+    categoryTitle: values.category,
+    desc: values.description ?? "",
+  });
+
+  navigateTo("/");
+
   toast("Transaction Created", {
     description: "Transition was created succesfully",
   });
@@ -54,7 +60,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 <template>
   <main class="mx-auto min-h-screen max-w-screen-lg flex flex-col">
-    <div class="mt-12">
+    <div class="mt-12 mx-6">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -69,7 +75,7 @@ const onSubmit = handleSubmit((values) => {
         </BreadcrumbList>
       </Breadcrumb>
     </div>
-    <div class="flex justify-center items-center flex-1 mb-24">
+    <div class="flex justify-center items-center flex-1 mb-24 mx-6">
       <div class="max-w-sm w-full">
         <div class="mb-4">
           <h2 class="font-medium text-lg leading-tight">Create Transaction</h2>
