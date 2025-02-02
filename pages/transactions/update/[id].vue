@@ -4,6 +4,15 @@ import { useForm } from "vee-validate";
 import * as z from "zod";
 import { toast } from "vue-sonner";
 
+definePageMeta({
+  // validate id is a number
+  validate: async (route) => {
+    return !(typeof route.params.id != "string" || isNaN(parseInt(route.params.id)))
+  }
+})
+
+const route = useRoute()
+
 const formSchema = toTypedSchema(
   z.object({
     description: z.string().optional(),
@@ -13,15 +22,24 @@ const formSchema = toTypedSchema(
     category: z.string().min(3, { message: "Be more descriptive." }),
   }),
 );
-
+const { getTransactionById, updateTransaction } = useTransactions()
 const cents = ref("0.00");
 
-const { isFieldDirty, handleSubmit, setFieldValue } = useForm({
+const { isFieldDirty, handleSubmit, setFieldValue, values } = useForm({
   validationSchema: formSchema,
   initialValues: {
     amount: cents.value,
   },
 });
+
+const transactionId = parseInt(route.params.id as string)
+
+onMounted(() => {
+  const initialValues = getTransactionById(transactionId)
+  setFieldValue("category", initialValues?.category.title ?? "")
+  setFieldValue("description", initialValues?.desc ?? "")
+  setFieldValue("amount", initialValues?.amount.toFixed(2) ?? "0.00")
+})
 
 const onUpdateCents = (e: Event) => {
   async function forceUpdate() {
@@ -43,9 +61,9 @@ const onUpdateCents = (e: Event) => {
   forceUpdate();
 };
 
-const { createTransaction } = useTransactions();
 const onSubmit = handleSubmit(async (values) => {
-  createTransaction({
+  updateTransaction({
+    id: transactionId,
     amount: parseFloat(values.amount),
     categoryTitle: values.category,
     desc: values.description ?? "",
@@ -53,8 +71,8 @@ const onSubmit = handleSubmit(async (values) => {
 
   navigateTo("/");
 
-  toast("Transaction Created", {
-    description: "Transition was created succesfully",
+  toast("Transaction Updated", {
+    description: "Transition was updated succesfully",
   });
 });
 </script>
@@ -70,7 +88,11 @@ const onSubmit = handleSubmit(async (values) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Create Transaction</BreadcrumbPage>
+            <BreadcrumbPage>Transactions</BreadcrumbPage>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Update</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -91,7 +113,7 @@ const onSubmit = handleSubmit(async (values) => {
               <FormControl>
                 <Input
                   :default-value="cents"
-                  :value="cents"
+                  :value="values.amount"
                   @input="onUpdateCents"
                 />
               </FormControl>

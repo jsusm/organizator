@@ -32,7 +32,7 @@ function onConfirmDeleteTransction() {
       </div>
       <div>
         <Button as-child>
-          <NuxtLink to="create-transaction"> Create Transaction </NuxtLink>
+          <NuxtLink to="/transactions/create"> Create Transaction </NuxtLink>
         </Button>
       </div>
     </div>
@@ -53,7 +53,7 @@ function onConfirmDeleteTransction() {
               <TableCell colspan="4" class="text-center">
                 There is no transactions,
                 <NuxtLink
-                  to="/create-transaction"
+                  to="/transactions/create"
                   class="hover:underline inline-flex items-center"
                   >create one!
                   <Icon name="tabler:arrow-up-right" class="w-4 h-4 mb-0.5"
@@ -73,7 +73,7 @@ function onConfirmDeleteTransction() {
                 </Badge>
               </TableCell>
               <TableCell>
-                {{ transaction.amount }}
+                ${{ transaction.amount.toFixed(2) }}
               </TableCell>
               <TableCell class="w-12">
                 <DropdownMenu>
@@ -84,7 +84,9 @@ function onConfirmDeleteTransction() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                    <DropdownMenuItem>Update</DropdownMenuItem>
+                    <NuxtLink :to="`/transactions/update/${transaction.id}`">
+                      <DropdownMenuItem>Update</DropdownMenuItem>
+                    </NuxtLink>
                     <DropdownMenuItem
                       @click="openDeleteDialog(transaction.id)"
                       variant="danger"
