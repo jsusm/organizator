@@ -1,21 +1,23 @@
 import { type Transaction } from "~/types";
 
 export const useTransactions = () => {
-  const transactions = useState<Transaction[]>("transactions", () => []);
+  const transactions = ref<Transaction[]>([]);
 
-  // persistance
   onMounted(() => {
-    const transactionsData = localStorage.getItem("transactions");
-    if (transactionsData === null) {
-      return;
+    if (import.meta.client) {
+      const transactionsData = localStorage.getItem("transactions");
+      if (transactionsData === null) {
+        return ;
+      }
+      transactions.value = JSON.parse(transactionsData) as Transaction[];
     }
-    transactions.value = JSON.parse(transactionsData);
-  });
+  })
 
-  watchEffect(() => {
-    console.log("transaction changed")
-    localStorage.setItem("transactions", JSON.stringify(transactions.value));
-  });
+  watch(transactions, () => {
+    if (import.meta.client) {
+      localStorage.setItem("transactions", JSON.stringify(transactions.value));
+    }
+  }, {deep: true});
 
   function createTransaction(payload: {
     amount: number;
@@ -23,6 +25,7 @@ export const useTransactions = () => {
     desc: string;
   }) {
     transactions.value.push({
+      id: Date.now(),
       amount: payload.amount,
       desc: payload.desc,
       category: { id: 1, title: payload.categoryTitle },
@@ -30,5 +33,9 @@ export const useTransactions = () => {
     });
   }
 
-  return { transactions, createTransaction };
+  function deleteTransction(payload: { id: number }) {
+    transactions.value = transactions.value.filter((t) => t.id != payload.id);
+  }
+
+  return { transactions, createTransaction, deleteTransction };
 };

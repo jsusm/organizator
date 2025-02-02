@@ -3,6 +3,7 @@ export interface Category {
   title: string;
 }
 export interface Transaction {
+  id: number;
   amount: number,
   desc: string,
   category: Category,
